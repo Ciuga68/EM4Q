@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <!--<link href="http://ott-lp03ac/emf/esri-maps/themes/blue/blue.css" rel="stylesheet" />-->
-	<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+    <link href="http://ott-lp03ac/emf/esri-maps/themes/blue/blue.css" rel="stylesheet" />
+	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
 
     <title>Esri Maps Framework</title>
 
@@ -134,10 +134,17 @@
 </head>
 
 <body class="claro esriMaps esriMapsCommonBackground">
-    <script data-dojo-config="baseUrl:'http://ott-lp03ac/EMF/dojo', isDebug: 1" src="http://ott-lp03ac/emf/dojo/dojo/dojo.js?p=d"></script>
+    <script data-dojo-config="baseUrl:'http://ott-lp03ac/EMf/dojo', isDebug: 1" src="http://ott-lp03ac/emf/dojo/dojo/dojo.js?p=d"></script>
 	
     <script>
-
+	esriMaps = {
+        config: {
+            customLocalizations: {
+				"esri-maps/commands/nls/Commands": "em4q-custom-localization/commands/nls/Commands"
+            },
+            helpTopicsLocation: null // Can be set to a fully qualified URL. Uses a default when not specified
+        }
+    };
 	require({
         packages: [{
             name: 'blue',
@@ -145,6 +152,9 @@
         },{
             name: 'samples',
             location: qRemote+'?public=only&cb='+(new Date()).getTime()+'&name=Extensions/EM4Q'
+        },{
+            name: 'em4q-custom-localization',
+            location: qRemote+'?public=only&cb='+(new Date()).getTime()+'&name=Extensions/EM4Q/em4q-custom-localization'
         }]
     }, ['blue']);
 	/*require({
