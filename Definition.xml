@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<ExtensionObject Label="Esri Maps for QlikView" PageHeight="10000" >
+	<Dimension Initial="" /> 
+	<Dimension Initial="" /> 
+	<Dimension Initial="" /> 
+	<Dimension Initial="" /> 
+    <Measurement Initial="" /> 
+	<Measurement Initial="" />
+	<Measurement Initial="" />
+    <Initiate Name="Caption.Text" value="Esri Maps for QlikView" /> 
+</ExtensionObject>

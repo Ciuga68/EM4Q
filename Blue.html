@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html debug = "true">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<link href="http://ott-lp03ac/emf/esri-maps/themes/blue/blue.css" rel="stylesheet" />-->
+	<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+
+    <title>Esri Maps Framework</title>
+
+    <style>
+    html, body, #app {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+    .small {
+        border: 1px solid #b2b2b2;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        overflow: hidden;
+        width: 450px;
+        height: 450px;
+    }
+    .medium {
+        border: 1px solid #b2b2b2;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        overflow: hidden;
+        width: 800px;
+        height: 800px;
+    }
+    .fullscreen {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .esriMapsCommandIconSamplePopupAction {
+        background-image: url('Wikipedia.png');
+    }
+    </style>
+
+    <script>
+    // Allow passing in locale and/or dir in URL. Don't include this in real/production page!
+    if (window.location.href.indexOf("?") > -1) {
+        var str = window.location.href.substr(window.location.href.indexOf("?") + 1).split(/#/);
+        var ary = str[0].split(/&/);
+        for (var i = 0; i < ary.length; i++) {
+            var split = ary[i].split("="),
+                key = split[0],
+                value = split[1];
+            switch (key) {
+                case "locale":
+                    dojoConfig = {
+                        locale: value
+                    };
+                    break;
+                case "dir":
+                    document.getElementsByTagName("html")[0].dir = value;
+                    break;
+                case "mode":
+                    esriMapsMode = value;
+                    break;
+                case "bisHosted":
+                    // Set a variable to indicate if we simulate a BisProvider proxy situation. This variable is passed in the querystring by BlueHostedInBis.html
+                    bisHosted = value === 'true';
+                    break;
+                case "size":
+                    esriMapsSize = value;
+                    break;
+                case "portalUrl":
+                    esriMapsPortalUrl = value;
+                    break;
+                case "state":
+                    esriMapsStateFilter = value;
+                case "unsafeLogin":
+                    unsafeLogin = true;
+            }
+        }
+    }
+    </script>
+
+    <!-- The following line needs to be removed when using a hosted build -->
+    <script >var dojoConfig = {
+    baseUrl: '',
+    async: true,
+    tlmSiblingOfDojo: false,
+    packages: [{
+       name: 'dojo',
+		location: '',
+		destLocation: ''
+	}, {
+		name: 'dijit',
+		location: '',
+		destLocation: ''
+	}, {
+		name: 'dojox',
+		location: '',
+		destLocation: ''
+    }, {
+        name: 'dgrid',
+        location: '../dgrid',
+        destLocation: '../dgrid'
+    }, {
+        name: 'put-selector',
+        location: '../put-selector',
+        destLocation: '../put-selector'
+    }, {
+        name: 'xstyle',
+        location: '../xstyle',
+        destLocation: '../xstyle'
+    }, {
+        name: 'esri',
+        location: '../esri',
+        destLocation: '../esri'
+    }, {
+        name: 'esri-maps',
+        location: '../esri-maps',
+        destLocation: '../esri-maps'
+    }, {
+        name: 'esri-report',
+        location: '../esri-report',
+        destLocation: '../esri-report'
+    }, {
+        name: 'emf',
+        location: '../emf',
+        destLocation: '../emf'
+    }]
+}</script>
+</head>
+
+<body class="claro esriMaps esriMapsCommonBackground">
+    <script data-dojo-config="baseUrl:'http://ott-lp03ac/EMF/dojo', isDebug: 1" src="http://ott-lp03ac/emf/dojo/dojo/dojo.js?p=d"></script>
+	
+    <script>
+
+	require({
+        packages: [{
+            name: 'blue',
+            location: qRemote+'?public=only&cb='+(new Date()).getTime()+'&name=Extensions/EM4Q/blue'
+        },{
+            name: 'samples',
+            location: qRemote+'?public=only&cb='+(new Date()).getTime()+'&name=Extensions/EM4Q'
+        }]
+    }, ['blue']);
+	/*require({
+        packages: [{
+            name: 'blue',
+            location: 'http://localhost/emf/samples/blue'
+        }]
+    }, ['blue']);*/
+    </script>
+
+    <div class="fullscreen" id="appContainer">
+        <div id="app"></div>
+    </div>
+</body>
+
+</html>
