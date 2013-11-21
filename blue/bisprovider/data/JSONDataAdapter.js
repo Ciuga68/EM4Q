@@ -177,7 +177,6 @@ define([
                 savedData = query && query.tableId && this._getSavedStoreData(query.tableId),
                 fetchStore = savedData || store,
                 filterQuery = {};
-
             if (typeof esriMapsStateFilter !== "undefined") {
                 filterQuery = { "State": esriMapsStateFilter };
             }
@@ -283,7 +282,9 @@ define([
 
             return dfrd.promise;
         },
-
+		refreshData: function(){
+			this._dataSources.Em4qData = createStore(window.data);
+		},
         insertColumns: function (insertStatement) {
             var deferred = new Deferred();
 

@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <link href="http://ott-lp03ac/emf/esri-maps/themes/blue/blue.css" rel="stylesheet" />
-	<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
+   <link href="http://ott-lp03ac/emf/esri-maps/themes/blue/blue.css" rel="stylesheet" />
+	 <!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
 
     <title>Esri Maps Framework</title>
 
@@ -156,7 +156,24 @@
             name: 'em4q-custom-localization',
             location: qRemote+'?public=only&cb='+(new Date()).getTime()+'&name=Extensions/EM4Q/em4q-custom-localization'
         }]
-    }, ['blue']);
+    }, ['blue','dojo/when'],function(blue,when){
+		window['onDataChanged'] = function(){
+			var layers = esriMapsApp.currentMap.getLayers();
+			//blue.JSONProvider.data.refreshData();
+			for(var i=0;i<layers.length;i++)
+			{
+				if(layers[i]._bisProvider)
+				{
+					var bisPro = layers[i]._bisProvider;
+					bisPro.implementor.data.refreshData();
+					when(bisPro.implementor.data.query(layers[i].query),
+					function(data){
+						layers[i].refreshBisData(data.results);
+					});	
+				}
+			}
+		}
+	});
 	/*require({
         packages: [{
             name: 'blue',

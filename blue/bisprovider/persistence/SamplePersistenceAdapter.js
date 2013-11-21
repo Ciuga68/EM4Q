@@ -16,7 +16,7 @@
 
 			get: function (key) {
 				var deferred = new Deferred(),
-					value = this._storage.getItem(key);
+					value = this._storage.getItem(docId+key);
 
 				if (value !== null) {
 					deferred.resolve(value);
@@ -40,10 +40,10 @@
 
 			remove: function (/*String*/ key) {
 				var deferred = new Deferred(),
-					value = this._storage.getItem(key);
+					value = this._storage.getItem(docId+key);
 
 				if (value !== null) {
-					this._storage.removeItem(key);
+					this._storage.removeItem(docId+key);
 					deferred.resolve();
 				} else {
 					deferred.reject(new ErrorMessage(ErrorMessage.Types.KeyNotFound));
@@ -68,7 +68,7 @@
 					if (json === undefined || json === "undefined" || json === null || json === "null") {
 						deferred.reject(new ErrorMessage(ErrorMessage.Types.InvalidSet));
 					} else {
-						this._storage.setItem(key, json);
+						this._storage.setItem(docId+key, json);
 					}
 					deferred.resolve();
 				}

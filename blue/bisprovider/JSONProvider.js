@@ -4,7 +4,8 @@ define([
     "./persistence/SamplePersistenceAdapter",
     "./application/ApplicationAdapter",
     "./authentication/AuthAdapter",
-    "./SessionAdapter"
+    "./SessionAdapter",
+	"./BisLayer"
 ], function (declare, DataAdapter, PersistenceAdapter, ApplicationAdapter, AuthenticationAdapter,SessionAdapter) {
     return declare(null, {
         constructor: function () {
