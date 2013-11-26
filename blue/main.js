@@ -34,8 +34,37 @@ require([
 		}
 
 		// Sample to show how to disable sharing
+		var selectionListeners = [];
+		var addSelectionListeners = function(){
+			for(var i=0;i<selectionListeners.length;i++)
+			{
+				dojo.disconnect(selectionListeners[i]);
+			}
+			selectionListeners = [];
+			var layers = esriMapsApp.currentMap.getLayers();
+			for(var i=0;i<layers.length;i++)
+			{
+				console.log("Layer Registered : "+layers[i].id);
+				selectionListeners.push(dojo.connect(layers[i].esriMaps(),"onSelectionChange",function(){
+					/*var colNames = [];
+					for(var feat in this._selectedFeatures)
+					{
+						colNames = this._selectedFeatures[feat].getLayer().generateFeatures.lookupFields;
+						break;
+					}*/
+					parent.updateSelectedRows(this._selectedFeatures);
+				}));
+			}
+		};
 		when(esriMapsApp.initialized, function() {
 			esriMapsApp.sharingDisabled = false;
+			
+			when(main.sidePanel.mapWrapper.loadedPromise,function(){
+				addSelectionListeners();
+				dojo.connect(esriMapsApp.currentMap,"onLayerAdd",function(){
+					addSelectionListeners();
+				});
+			});
 		});
 	}
 	main.create();

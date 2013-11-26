@@ -134,7 +134,7 @@
 </head>
 
 <body class="claro esriMaps esriMapsCommonBackground">
-    <script data-dojo-config="baseUrl:'http://ott-lp03ac/EMf/dojo', isDebug: 1" src="http://ott-lp03ac/emf/dojo/dojo/dojo.js?p=d"></script>
+    <script data-dojo-config="baseUrl:'http://ott-lp03ac/EMF/dojo', isDebug: 1" src="http://ott-lp03ac/emf/dojo/dojo/dojo.js?p=d"></script>
 	
     <script>
 	esriMaps = {
@@ -157,7 +157,7 @@
             location: qRemote+'?public=only&cb='+(new Date()).getTime()+'&name=Extensions/EM4Q/em4q-custom-localization'
         }]
     }, ['blue','dojo/when'],function(blue,when){
-		window['onDataChanged'] = function(){
+		window.onDataChanged = function(){
 			var layers = esriMapsApp.currentMap.getLayers();
 			//blue.JSONProvider.data.refreshData();
 			for(var i=0;i<layers.length;i++)
@@ -174,12 +174,7 @@
 			}
 		}
 	});
-	/*require({
-        packages: [{
-            name: 'blue',
-            location: 'http://localhost/emf/samples/blue'
-        }]
-    }, ['blue']);*/
+	
     </script>
 
     <div class="fullscreen" id="appContainer">

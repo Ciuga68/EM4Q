@@ -4,9 +4,9 @@
 	<Dimension Initial="" Multiple="" /> 
 	<Dimension Initial="" Multiple="" /> 
 	<Dimension Initial="" Multiple="" /> 
-    <Measurement Initial="" Multiple=""/>
-<Measurement Initial="" Multiple=""/>
-<Measurement Initial="" Multiple=""/>
-<Measurement Initial="" Multiple=""/>	
+    <Measurement Initial="" />
+<Measurement Initial="" />
+<Measurement Initial="" />
+	<Initiate Name="Chart.Dimension.3.Label" Value="Row Number (Optional)" /> 
     <Initiate Name="Caption.Text" value="Esri Maps for QlikView" /> 
 </ExtensionObject>
